@@ -1,0 +1,53 @@
+<html xmlns:th="http://www.w3.org/1999/html">
+<head>
+    <title>Add restaurant</title>
+
+</head>
+<body>
+<h1>Form for add new restaurant</h1>
+<form th:action="@{/admin/saveRestaurant}" method="post">
+    <input type="hidden" name="id" th:value="${restaurant.id}" />
+
+    <div class="form-group">
+        <label for="restaurantName">Name</label>
+        <input type="text" class="form-control" th:value="${restaurant.name}" name="name"
+               id="restaurantName" placeholder="Name"/>
+    </div>
+    <div class="form-group">
+        <label for="restaurantAddress">Address</label>
+        <input type="address" class="form-control" th:value="${restaurant.address}" name="address"
+               id="restaurantAddress" placeholder="Address"/>
+    </div>
+    <div class="form-group">
+        <label for="restaurantPhoneNumber">Phone</label>
+        <input type="text" class="form-control" th:value="${restaurant.phoneNumber}" name="phoneNumber"
+               id="restaurantPhoneNumber" placeholder="Phone number"/>
+    </div>
+    <div class="form-group">
+        <label for="restaurantMenuUrl">Menu url</label>
+        <input type="text" class="form-control" th:value="${restaurant.menuUrl}"
+               name="menuUrl" id="restaurantMenuUrl" placeholder="Menu url"/>
+    </div>
+    <div class="form-group">
+        <label for="restaurantDeliveryTime">Delivery time</label>
+        <input type="text" class="form-control" th:value="${restaurant.deliveryTime}"
+               name="deliveryTime" id="restaurantDeliveryTime" placeholder="Delivery time"/>
+    </div>
+
+    <div class="form-group">
+        <label for="restaurantDeliveryCharges">Delivery charges</label>
+        <input type="text" class="form-control" th:value="${restaurant.deliveryCharges}"
+               name="deliveryCharges" id="restaurantDeliveryCharges" placeholder="Delivery charges"/>
+    </div>
+
+    <input type="hidden"
+           name="${_csrf.parameterName}"
+           value="${_csrf.token}"/>
+
+    <button class="btn btn-primary" type="submit">Add Restaurant</button>
+</form>
+
+
+</body>
+
+</html>

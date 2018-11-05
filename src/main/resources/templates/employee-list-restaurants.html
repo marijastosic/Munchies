@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Restaurant</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/landing.css}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Custom CSS -->
+
+    <link rel="stylesheet"
+          href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Droid+Sans'
+          rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Architects+Daughter'
+          rel='stylesheet' type='text/css'>
+
+</head>
+<body>
+<div class="container topnav">
+    <div class="container">
+        <div class="col-md-10 col-md-offset-1">
+            <br>
+            <br>
+            <img th:src="@{/images/restaurant_green1.jpg}" class="img-responsive center-block"
+                 width="65%" height="50%" alt="Restaurant"/>
+            <hr>
+            <td>
+                <a class="btn btn-md btn btn-primary"
+                   th:href="${'/login'}">Login: ADMIN</a>
+            </td>
+            <td>
+                <a class="btn btn-md btn btn-danger"
+                   th:href="${'/registration'}">Register</a>
+            </td>
+
+            <h4 th:utext="${errorMessage}" style="color:#FF0000;"></h4>
+        </div>
+    </div>
+</div>
+<div>
+
+    <div class="container">
+        <div class="col-md-10 col-md-offset-1">
+            <h2 style="text:25px; font-family: 'Architects Daughter', cursive">Restaurants</h2>
+            <table class="table table-hover table-striped">
+                <tr>
+                    <th style="color: #f2f2f2 ;background-color:#669999; font-size: large">Name</th>
+                    <th style="color: #f2f2f2 ;background-color:#669999; font-size: large">Email</th>
+                    <th style="color: #f2f2f2 ;background-color:#669999;font-size: large">Short name</th>
+                    <th style="color: #f2f2f2 ;background-color:#669999;font-size: large">Adress</th>
+                    <th style="color: #f2f2f2 ;background-color:#669999;font-size: large">Phone number</th>
+                    <th style="color: #f2f2f2 ;background-color:#669999;font-size: large">Menu url</th>
+                    <th style="color: #f2f2f2 ;background-color:#669999;font-size: large">View restaurant details</th>
+                    <th style="color: #f2f2f2 ;background-color:#669999;font-size: large">Create new group order</th>
+                </tr>
+
+                <tr th:each="restaurant : ${restaurants}">
+                    <td th:utext="${restaurant.name}"></td>
+                    <td th:utext="${restaurant.email}"></td>
+                    <td th:utext="${restaurant.name.replace(' ', '_')}"></td>
+                    <td th:utext="${restaurant.address}"></td>
+                    <td th:utext="${restaurant.phoneNumber}"></td>
+                    <td><a th:href="${restaurant.menuUrl}" th:text="${restaurant.menuUrl}" th:target="_blank"></a></td>
+                    <td>
+                        <a
+                                th:href="${'/employee/list/' + restaurant.id}" th:value="${restaurant.id}">View
+                            restaurant details</a>
+                    </td>
+                    <td>
+                        <a
+                                th:href="${'/employee/showFormForAddByRestaurantId/'+ restaurant.id}"
+                                th:value="${restaurant.id}">Create new group order</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

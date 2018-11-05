@@ -1,0 +1,120 @@
+<html xmlns:th="http://www.w3.org/1999/html">
+<head>
+    <title>Add restaurant</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/landing.css}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Custom CSS -->
+
+    <link rel="stylesheet"
+          href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Droid+Sans'
+          rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Architects+Daughter'
+          rel='stylesheet' type='text/css'>
+
+</head>
+<body>
+<div class="container">
+    <div class="col-md-10 col-md-offset-1">
+        <h2 style="text:25px; font-family: 'Architects Daughter', cursive">Restaurant form</h2>
+        <form th:action="@{/admin/saveRestaurant}" method="post" th:object="${restaurant}" enctype="multipart/form-data">
+            <!--<input type="hidden" name="id" th:value="${restaurant.id}" /> ovo ne treba-->
+
+            <!--<table class="table table-striped">-->
+            <!--<input type="text" class="form-control" th:value="${restaurant.name}" name="name"-->
+            <!--placeholder="Name"/>-->
+            <!--<input type="address" class="form-control" th:value="${restaurant.address}" name="address"-->
+            <!--placeholder="Address"/>-->
+            <!--<input type="text" class="form-control" th:value="${restaurant.phoneNumber}" name="phoneNumber"-->
+            <!--placeholder="Phone number"/>-->
+            <!--<input type="text" class="form-control" th:value="${restaurant.menuUrl}"-->
+            <!--name="menuUrl" placeholder="Menu url"/>-->
+            <!--<input type="text" class="form-control" th:value="${restaurant.deliveryTime}"-->
+            <!--name="deliveryTime" placeholder="Delivery time"/>-->
+            <!--<input type="text" class="form-control" th:value="${restaurant.additionalCharges}"-->
+            <!--name="additionalCharges" placeholder="Additional charges"/>-->
+            <!--</tr>-->
+            <!--</table>-->
+            <input type="hidden" name="id" th:value="${restaurant.id}"/>
+            <table class="table table-striped">
+                <tr>
+                    <td>Name:</td>
+                    <td><input type="text" class="form-control" th:field="*{name}" name="name"
+                               placeholder="Name"/></td>
+                    <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: #FF1C19">Name Error</td>
+                </tr>
+
+                <tr>
+                    <td>Email:</td>
+                    <td><input type="text" class="form-control" th:field="*{email}" name="email"
+                               placeholder="Email"/></td>
+                    <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color: #FF1C19">Email Error</td>
+                </tr>
+                <tr>
+                    <td>Address:</td>
+                    <td><input type="text" class="form-control" th:field="*{address}" name="address"
+                               placeholder="Address"/></td>
+                    <td th:if="${#fields.hasErrors('address')}" th:errors="*{address}" style="color: #FF1C19" >Address Error</td>
+                </tr>
+                <tr>
+                    <td>Phone number:</td>
+                    <td><input type="text" class="form-control" th:field="*{phoneNumber}" name="phoneNumber"
+                               placeholder="Phone number"/></td>
+                    <td th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" style="color: #FF1C19">Phone number Error</td>
+                </tr>
+                <!--<tr>-->
+                    <!--<td>Menu url:</td>-->
+                    <!--<td><input type="text" class="form-control" th:field="*{menuUrl}"-->
+                               <!--name="menuUrl" placeholder="Menu url"/></td>-->
+                    <!--<td th:if="${#fields.hasErrors('menuUrl')}" th:errors="*{menuUrl}" style="color: #FF1C19" >Menu url Error</td>-->
+                <!--</tr>-->
+
+                <!-- ODAVDE SE MENJA-->
+
+                <tr>
+                    <td>Menu file:</td>
+                    <td><input type="file" class="form-control" th:field="*{uploadFile}"
+                               name="uploadFile" placeholder="uploadFile url"/></td>
+                    <td th:if="${#fields.hasErrors('uploadFile')}" th:errors="*{uploadFile}" style="color: #FF1C19" >UploadFile Error</td>
+                </tr>
+
+                <!--<div class="form-group">-->
+                    <!--<label class="control-label" for="productImage">Menu url: </label>-->
+                    <!--<form:input id="uploadFile" path="uploadFile" type="file" class="form:input-large"/>-->
+                <!--</div>-->
+                <tr>
+                    <td>Delivery time:</td>
+                    <td><input type="text" class="form-control" th:field="*{deliveryTime}"
+                               name="deliveryTime" placeholder="Delivery time"/></td>
+                    <td th:if="${#fields.hasErrors('deliveryTime')}" th:errors="*{deliveryTime}" style="color: #FF1C19">Delivery time Error</td>
+                </tr>
+                <tr>
+                    <td>Additional charges:</td>
+                    <td><input type="text" class="form-control" th:field="*{additionalCharges}"
+                               name="additionalCharges" placeholder="Additional charges"/></td>
+                    <td th:if="${#fields.hasErrors('additionalCharges')}" th:errors="*{additionalCharges}" style="color: #FF1C19" >Additional charges Error
+                    </td>
+                </tr>
+            </table>
+
+            <input type="hidden"
+                   name="${_csrf.parameterName}"
+                   value="${_csrf.token}"/>
+
+            <button class="btn btn-success" type="submit">Add Restaurant</button>
+
+        </form>
+        <form th:action="@{/admin/list}" method="get">
+            <button class="btn btn-md btn btn-primary" name="back"
+                    type="Submit">Back
+            </button>
+        </form>
+    </div>
+</div>
+</body>
+
+</html>

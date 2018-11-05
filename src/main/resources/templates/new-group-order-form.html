@@ -1,0 +1,59 @@
+<html xmlns:th="http://www.w3.org/1999/html">
+<head>
+    <title>Add restaurant</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/landing.css}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+    <!-- Custom CSS -->
+
+    <link rel="stylesheet"
+          href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Droid+Sans'
+          rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Architects+Daughter'
+          rel='stylesheet' type='text/css'>
+
+</head>
+<body>
+<div class="container">
+    <div class="col-md-10 col-md-offset-1">
+        <h2 style="text:25px; font-family: 'Architects Daughter', cursive">New group order</h2>
+        <form th:action="@{/employee/saveGroupOrder}" method="post" th:object="${groupOrder}">
+            <input type="hidden" name="id" th:value="${groupOrder.id}" />
+            <input type="hidden" name="restaurantIdString" th:value="${groupOrder.restaurantIdString}" />
+            <table class="table table-striped">
+                <tr>
+                    <td>Creator: </td>
+                <td><input type="text" class="form-control"  th:field="*{creator}" name="creator"
+                       placeholder="Creator"/></td>
+                    <td th:if="${#fields.hasErrors('creator')}" th:errors="*{creator}" style="color: #FF1C19">Creator Error</td>
+                </tr>
+                <tr>
+                    <td>Timeout:</td>
+                <td><input type="number" class="form-control" th:field="*{timeout}" name="timeout"
+                       placeholder="Timeout" min="1" max="60" step="1"/></td>
+                    <td th:if="${#fields.hasErrors('timeout')}" th:errors="*{timeout}" style="color: #FF1C19">Timeout Error</td>
+                </tr>
+            </table>
+
+            <input type="hidden"
+                   name="${_csrf.parameterName}"
+                   value="${_csrf.token}"/>
+
+            <button class="btn btn-secondary" type="submit">Create group order</button>
+
+        </form>
+
+        <form th:action="@{/employee/list}" method="get">
+            <button class="btn btn-md btn btn-primary" name="back"
+                    type="Submit">Back
+            </button></form>
+    </div>
+</div>
+</body>
+
+</html>
